@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 1020px;
+}
+.text-input, .keyboard {
+    padding: 15px;
+    background-color: rgba(198, 199, 212, 1);
+    border-radius: 10px;
+}
+textarea {
+    width: 100%;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.key {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.key:hover {
+    background-color: rgb(234, 234, 242);
+    cursor: pointer;
+}
+.delete-tab {
+    width: 90px;
+}
+.letter {
+    font-size: 20px;
+}
+.fz14 {
+    font-size: 14px;
+}
+.right-bottom {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+.left-bottom {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
+.light {
+    color: rgba(198, 199, 212, 1);
+}
+.caps-return {
+    width: 120px;
+}
+.shift {
+    width: 140px;
+}
+.command {
+    width: 74px;
+}
+.space {
+    width: 331px;
+}
+.arrow {
+    height: 29px;
+}
+.div-arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+}
+.bottom {
+    justify-content: flex-end;
+}
+.arrow:nth-child(1) {
+    border-radius: 5px 5px 0 0;
+}
+.arrow:nth-child(2) {
+    border-radius: 0 0 5px 5px;
+}
+img {
+    width: 17px;
+    height: 20px;
+}
+.pulse:hover, 
+.pulse:focus {
+  animation: pulse 0.8s;
+  box-shadow: 0 0 0 1em transparent;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rebeccapurple;}
+}
