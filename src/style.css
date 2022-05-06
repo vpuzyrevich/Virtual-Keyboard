@@ -15,7 +15,9 @@
     border-radius: 10px;
 }
 textarea {
+    padding: 20px;
     width: 100%;
+    font-size: 20px;
 }
 
 .keyboard {
@@ -40,16 +42,21 @@ textarea {
     height: 60px;
     border-radius: 5px;
     background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 .key:hover {
-    background-color: rgb(234, 234, 242);
+    border: 2px solid #a972cb;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 .delete-tab {
     width: 90px;
 }
 .letter {
     font-size: 20px;
+}
+.activeLetter {
+    opacity: 1;
 }
 .fz14 {
     font-size: 14px;
@@ -65,7 +72,7 @@ textarea {
     bottom: 5px;
 }
 .light {
-    color: rgba(198, 199, 212, 1);
+   opacity: 0.3;
 }
 .caps-return {
     width: 120px;
@@ -101,11 +108,29 @@ img {
     width: 17px;
     height: 20px;
 }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 #a972cb;}
+}
+.active {
+    border: 2px solid #a972cb;
+}
+@keyframes scale {
+    0% { 
+        transform: scale(1);
+    }
+    50% { 
+        transform: scale(0.9);
+    }
+    100% { 
+        transform: scale(1);
+    }
+}
+.scale {
+    animation: scale 0.3s;
+}
 .pulse:hover, 
 .pulse:focus {
   animation: pulse 0.8s;
   box-shadow: 0 0 0 1em transparent;
-}
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rebeccapurple;}
 }
