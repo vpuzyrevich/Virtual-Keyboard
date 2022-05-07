@@ -20,7 +20,7 @@ const letter5 = ['en', 'control', 'option', 'command', ' ', 'command', 'option']
 document.body.innerHTML = `
     <div class="wrapper">
         <div class="text-input">
-            <textarea rows="10" autofocus></textarea>
+            <textarea row = "10" placeholder="your text will be shown here" autofocus></textarea>
         </div>
         <div class="keyboard">
             <div class="row"></div>
@@ -40,13 +40,13 @@ const key3 = row[2].getElementsByClassName('key');
 const key4 = row[3].getElementsByClassName('key');
 const key5 = row[4].getElementsByClassName('key');
 const span = document.getElementsByTagName('span');
-const keyActive = document.getElementsByClassName('activeLetter');
+const keyActive = document.getElementsByClassName('active-letter');
 
 const createKey = (i, elem1, elem2) => {
     const keyDiv = document.createElement('div');
     keyDiv.classList.add('key');
     const span1 = document.createElement('span');
-    span1.classList.add('letter', 'activeLetter');
+    span1.classList.add('letter', 'active-letter');
     span1.textContent = elem1;
     span1.setAttribute('data-char', elem1);
     keyDiv.append(span1);
@@ -152,6 +152,8 @@ span[113].setAttribute('data-char', 'Meta');
 span[117].setAttribute('data-char', 'Meta');
 span[119].setAttribute('data-char', 'Alt');
 
+
+    //Class Active add/remove
 const addClassActiveSpan = (e) => {
     for(let i = 0; i < span.length; i++) {
         if(span[i].getAttribute('data-char') == e.key) {
@@ -186,20 +188,163 @@ const removeClassActiveKey5 = (e) => {
 };
 for(let i = 0; i < key.length; i++) {
     key[i].classList.add('pulse');
-    key[i].addEventListener('click', (e) => {
-        // textarea.focus();
+    key[i].addEventListener('click', () => {
         key[i].classList.remove('pulse');
         key[i].classList.add('scale');
-        console.log(e.currentTarget.lastElementChild.textContent);
+        textarea[0].focus();
     });
 }
+
+    //Add value on click
+
+const capsLock = (key) => {
+    for(let i = 1; i < 11; i++) {
+        if(key.classList.contains('active')) {
+            key2[i].lastChild.textContent = key2[i].lastChild.textContent.toUpperCase();
+        } else {
+            key2[i].lastChild.textContent = key2[i].lastChild.textContent.toLowerCase();
+        }
+    }
+    for(let i = 1; i < 10; i++) {
+        if(key.classList.contains('active')) {
+            key3[i].lastChild.textContent = key3[i].lastChild.textContent.toUpperCase();
+        } else {
+            key3[i].lastChild.textContent = key3[i].lastChild.textContent.toLowerCase();
+        }
+    }
+    for(let i = 1; i < 8; i++) {
+        if(key.classList.contains('active')) {
+            key4[i].lastChild.textContent.innerHTML = key4[i].lastChild.textContent.toUpperCase();
+        } else {
+            key4[i].lastChild.textContent.innerHTML = key4[i].lastChild.textContent.toLowerCase();
+        }
+    }
+};
+const addValueKeyLastChild = (key) => {
+    textarea[0].focus();
+    textarea[0].value += key.lastElementChild.innerHTML;
+};
+const addValueKeyFirstChild = (key) => {
+    textarea[0].focus();
+    textarea[0].value += key.firstElementChild.textContent;
+};
+for(let i = 0; i < 13; i++) {
+    key1[i].addEventListener('click', () => {
+        if(key1[i].lastChild.classList.contains('active-letter')) {
+            addValueKeyLastChild(key1[i]);
+        } else {
+            addValueKeyFirstChild(key1[i]);
+        }  
+    });   
+}
+for(let i = 1; i < 14; i++) {
+    key2[i].addEventListener('click', () => {
+        if(key2[i].lastChild.classList.contains('active-letter')) {
+            addValueKeyLastChild(key2[i]);
+        } else {
+            addValueKeyFirstChild(key2[i]);
+        } 
+    });   
+}
+for(let i = 1; i < 12; i++) {
+    key3[i].addEventListener('click', () => {
+        if(key3[i].lastChild.classList.contains('active-letter')) {
+            addValueKeyLastChild(key3[i]);
+        } else {
+            addValueKeyFirstChild(key3[i]);
+        } 
+    });   
+}
+for(let i = 1; i < 11; i++) {
+    key4[i].addEventListener('click', () => {
+        if(key4[i].lastChild.classList.contains('active-letter')) {
+            addValueKeyLastChild(key4[i]);
+        } else {
+            addValueKeyFirstChild(key4[i]);
+        } 
+    });   
+}
+key1[13].addEventListener('click', () => {
+    textarea[0].value = textarea[0].value.substring(0, textarea[0].value.length - 1);
+});  
+key2[0].addEventListener('click', () => {
+    textarea[0].value += "     ";
+});
+key3[0].addEventListener('click', () => {
+    key3[0].classList.toggle('active');
+    capsLock(key3[0]);
+});
+key3[12].addEventListener('click', () => {
+    textarea[0].value += "\n";
+});
+const addActiveFirstSpan = (key) => {
+    key.firstChild.classList.toggle('active-letter');
+    key.lastChild.classList.toggle('active-letter');
+};
+const removeActiveFirstSpan = (key) => {
+    key.firstChild.classList.toggle('active-letter');
+    key.lastChild.classList.toggle('active-letter');
+};
+const addActiveLetter = () => {
+    for(let i = 0; i < 13; i++) {
+        addActiveFirstSpan(key1[i]);
+    }
+    for(let i = 11; i < 14; i++) {
+        addActiveFirstSpan(key2[i]);
+    }
+    for(let i = 10; i < 12; i++) {
+        addActiveFirstSpan(key3[i]);
+    }
+    for(let i = 8; i < 11; i++) {
+        addActiveFirstSpan(key4[i]);
+    }
+};
+const removeActiveLetter = () => {
+    for(let i =0; i < 13; i++) {
+        removeActiveFirstSpan(key1[i]);
+    }
+    for(let i = 11; i < 14; i++) {
+        removeActiveFirstSpan(key2[i]);
+    }
+    for(let i = 10; i < 12; i++) {
+        removeActiveFirstSpan(key3[i]);
+    }
+    for(let i = 8; i < 11; i++) {
+        removeActiveFirstSpan(key4[i]);
+    }
+};
+const actionShift = (key) => {
+    key.classList.toggle('active');
+    capsLock(key);
+    if(key.classList.contains('active')) {
+        addActiveLetter();
+    } else {
+        removeActiveLetter();
+    }
+};
+key4[0].addEventListener('click', (e) => {
+    actionShift(key4[0]);
+});
+key4[11].addEventListener('click', (e) => {
+    actionShift(key4[11])
+});
+
+key5[4].addEventListener('click', () => {
+    textarea[0].value += " ";
+}); 
 document.addEventListener('keydown', (e) => {
     addClassActiveSpan(e);
     addClassActiveKey5(e);
+    capsLock(key3[0]);
+    console.log(key4[0].classList.contains('active'));
+    if(key4[0].classList.contains('active')) {
+        capsLock(key4[0]);
+        addActiveLetter();
+    }
 });
 document.addEventListener('keyup', (e) => {
     removeClassActiveSpan(e);
     removeClassActiveKey5(e);
-    
+    capsLock(key3[0]);
+    removeActiveLetter();
 });
-console.log(key);

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    font-size: 20px;
 }
 .wrapper {
     margin: 0 auto;
@@ -54,9 +55,7 @@ textarea {
 }
 .letter {
     font-size: 20px;
-}
-.activeLetter {
-    opacity: 1;
+    opacity: 0.3;
 }
 .fz14 {
     font-size: 14px;
@@ -133,4 +132,7 @@ img {
 .pulse:focus {
   animation: pulse 0.8s;
   box-shadow: 0 0 0 1em transparent;
+}
+.active-letter {
+    opacity: 1;
 }
