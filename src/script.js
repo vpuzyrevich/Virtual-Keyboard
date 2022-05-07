@@ -12,15 +12,15 @@ const letter4 = ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm'];
 const symbol4 = [',', '.', '/'];
 const symbol4Top = ['<', '>', '?'];
 const letter5 = ['en', 'control', 'option', 'command', ' ', 'command', 'option'];
-// document.onkeydown = function(e) {
-//     dataChar.push(e.key);
-//     console.log(dataChar);
-    
-// };
+const ru2 = ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ё'];
+const ru3 = ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'];
+const ru4 = ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'];
+const symbolRu = ['№', '%', ':', ',', '.', ';'];
+
 document.body.innerHTML = `
     <div class="wrapper">
         <div class="text-input">
-            <textarea row = "10" placeholder="your text will be shown here" autofocus></textarea>
+            <textarea rows="6" placeholder="your text will be shown here" autofocus></textarea>
         </div>
         <div class="keyboard">
             <div class="row"></div>
@@ -196,33 +196,32 @@ for(let i = 0; i < key.length; i++) {
 }
 
     //Add value on click
-
 const capsLock = (key) => {
-    for(let i = 1; i < 11; i++) {
+    for(let i = 1; i < 14; i++) {
         if(key.classList.contains('active')) {
             key2[i].lastChild.textContent = key2[i].lastChild.textContent.toUpperCase();
         } else {
             key2[i].lastChild.textContent = key2[i].lastChild.textContent.toLowerCase();
         }
     }
-    for(let i = 1; i < 10; i++) {
+    for(let i = 1; i < 12; i++) {
         if(key.classList.contains('active')) {
             key3[i].lastChild.textContent = key3[i].lastChild.textContent.toUpperCase();
         } else {
             key3[i].lastChild.textContent = key3[i].lastChild.textContent.toLowerCase();
         }
     }
-    for(let i = 1; i < 8; i++) {
+    for(let i = 1; i < 10; i++) {
         if(key.classList.contains('active')) {
-            key4[i].lastChild.textContent.innerHTML = key4[i].lastChild.textContent.toUpperCase();
+            key4[i].lastChild.textContent = key4[i].lastChild.textContent.toUpperCase();
         } else {
-            key4[i].lastChild.textContent.innerHTML = key4[i].lastChild.textContent.toLowerCase();
+            key4[i].lastChild.textContent = key4[i].lastChild.textContent.toLowerCase();
         }
     }
 };
 const addValueKeyLastChild = (key) => {
     textarea[0].focus();
-    textarea[0].value += key.lastElementChild.innerHTML;
+    textarea[0].value += key.lastElementChild.textContent;
 };
 const addValueKeyFirstChild = (key) => {
     textarea[0].focus();
@@ -326,25 +325,91 @@ key4[0].addEventListener('click', (e) => {
     actionShift(key4[0]);
 });
 key4[11].addEventListener('click', (e) => {
-    actionShift(key4[11])
+    actionShift(key4[11]);
 });
+key5[0].addEventListener('click', (e) => {
+    if(key5[0].lastChild.textContent === 'en') {
+        key5[0].lastChild.textContent = 'ru';
+    } else {
+        key5[0].lastChild.textContent = 'en';
+    }
+    if(key5[0].lastChild.textContent === 'ru') {
+        for(let i = 0; i < symbolRu.length; i++) {
+            key1[i+3].firstChild.textContent = symbolRu[i];
+        }
+        for(let i = 0; i < ru2.length; i++) {
+            key2[i+1].lastChild.textContent = ru2[i];
+        }
+        for(let i = 0; i < ru3.length; i++) {
+            key3[i+1].lastChild.textContent = ru3[i];
+        }
+        for(let i = 0; i < ru4.length; i++) {
+            key4[i+1].lastChild.textContent = ru4[i];
+        }
+    } else {
+        for(let i = 3; i < 9; i++) {
+            key1[i].firstChild.textContent = numberTop[i];
+        }
+        for(let i = 1; i < letter2.length; i++) {
+            key2[i].lastChild.textContent = letter2[i];
+        }
+            key2[11].lastChild.textContent = symbol2[0];
+            key2[12].lastChild.textContent = symbol2[1];
+            key2[13].lastChild.textContent = symbol2[2];
+
+        for(let i = 1; i < letter3.length; i++) {
+            key3[i].lastChild.textContent = letter3[i];
+        }
+        for(let i = 10; i < 12; i++) {
+            key3[i].lastChild.textContent = symbol3[i-10];
+        }
+        for(let i = 1; i < letter4.length; i++) {
+            key4[i].lastChild.textContent = letter4[i];
+        }
+        for(let i = 8; i < 11; i++) {
+            key4[i].lastChild.textContent = symbol4[i-8];
+        }
+    }
+});
+
 
 key5[4].addEventListener('click', () => {
     textarea[0].value += " ";
 }); 
+key5[7].addEventListener('click', () => {
+    if(textarea[0].selectionStart !== 0) {
+        textarea[0].setSelectionRange(textarea[0].selectionStart-1, textarea[0].selectionStart-1); 
+    } 
+});
+key5[8].addEventListener('click', () => {
+    textarea[0].setSelectionRange(0, 0); 
+});
+key5[9].addEventListener('click', () => {
+    textarea[0].setSelectionRange(textarea[0].value.length, textarea[0].value.length); 
+});
+key5[10].addEventListener('click', () => {
+    textarea[0].setSelectionRange(textarea[0].selectionStart+1, textarea[0].selectionStart+1); 
+});
+
 document.addEventListener('keydown', (e) => {
+    textarea[0].focus();
     addClassActiveSpan(e);
     addClassActiveKey5(e);
     capsLock(key3[0]);
-    console.log(key4[0].classList.contains('active'));
-    if(key4[0].classList.contains('active')) {
-        capsLock(key4[0]);
-        addActiveLetter();
+    capsLock(key4[0]);
+    if (e.code === "Tab") {
+        e.preventDefault();
+        textarea[0].value += "     ";
     }
+    // if(key4[0].classList.contains('active')) {
+    //     addActiveLetter();
+    // }
 });
 document.addEventListener('keyup', (e) => {
     removeClassActiveSpan(e);
     removeClassActiveKey5(e);
     capsLock(key3[0]);
-    removeActiveLetter();
+    // removeActiveLetter();
 });
+
+
