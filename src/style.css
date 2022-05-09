@@ -5,20 +5,28 @@
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
+body {
+    background-image: url(./assets/vivid-blurred-colorful-background.jpg);
+    background-size: cover;
+}
 .wrapper {
     margin: 0 auto;
     margin-top: 50px;
-    width: 1020px;
+    max-width: 1030px;
 }
 .text-input, .keyboard {
-    padding: 15px;
-    background-color: rgba(198, 199, 212, 1);
+    padding: 5px;
     border-radius: 10px;
 }
 textarea {
     padding: 20px;
     width: 100%;
     font-size: 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+textarea:focus {
+    outline: none;
 }
 
 .keyboard {
@@ -29,6 +37,7 @@ textarea {
 }
 .row {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
@@ -41,6 +50,7 @@ textarea {
     padding: 4px;
     width: 60px;
     height: 60px;
+    border: 2px solid #fff;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 0 8px rgba(0,0,0,0.3);
@@ -135,4 +145,9 @@ img {
 }
 .active-letter {
     opacity: 1;
+}
+.lang {
+    margin-top: 20px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
 }
